@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
-    [SerializeField]
-    private int startDeckSize;
-    [SerializeField]
-    private CreateCardInfo createCardInfo;
-    //private Transform parentTransform;
+    [SerializeField] private int startDeckSize;
+
+    [SerializeField] private CreateCardInfo createCardInfo;
+    [SerializeField] private DrawCards drawCards;
+
+    //private bool isCreated = false;
 
     private void Awake()
     {
-        //parentTransform = GetComponent<Transform>();
         CreateDeck();
     }
 
@@ -23,6 +23,9 @@ public class Deck : MonoBehaviour
             GameObject card = Instantiate(Resources.Load("Card", typeof(GameObject)), transform) as GameObject;
             card.GetComponent<CanvasGroup>().blocksRaycasts = false;
             createCardInfo.CreateCard(card, true);
+            //isCreated = true; 
         }
+
+        drawCards.DrowStartHand();
     }
 }

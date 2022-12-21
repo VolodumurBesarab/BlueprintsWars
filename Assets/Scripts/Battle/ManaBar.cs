@@ -56,4 +56,11 @@ public class ManaBar : MonoBehaviour
             GetComponentsInChildren<Image>()[i].color = Color.blue;
         }
     }
+
+    public void RefreshMana()
+    {
+        currentManaCrystal = maxManaCrystal;
+        ReDrowCrystal(currentManaCrystal);
+    }
+
 }

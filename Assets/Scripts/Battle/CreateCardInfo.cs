@@ -19,15 +19,9 @@ public class CreateCardInfo : MonoBehaviour
         card.GetComponentInChildren<Image>().color = currentClassCard.color;
         card.GetComponentsInChildren<Text>()[1].text = "Damage: " + currentClassCard.CardDamage + " Armor: " + currentClassCard.CardArmor;
         card.GetComponentsInChildren<Text>()[2].text = currentClassCard.cardMana.ToString();
-        var cardBack = card.GetComponentsInChildren<Image>()[3].color;
-        if (isHide)
-        {
-            Debug.Log(card.GetComponentsInChildren<Image>()[3].name);
-            cardBack.a = 255f;
-        }
-        else
-            cardBack.a = 0f;
-        card.GetComponentsInChildren<Image>()[3].color = cardBack;
+        var cardback = card.GetComponentsInChildren<Image>()[3].color;
+        CardbackChange(card, isHide);
+        
         WriteCardInfo(card);
     }
 
@@ -39,5 +33,21 @@ public class CreateCardInfo : MonoBehaviour
         card.GetComponentInChildren<CardInfo>().CardArmor = currentClassCard.CardArmor;
         card.GetComponentInChildren<CardInfo>().Color = currentClassCard.color;
         card.GetComponentInChildren<CardInfo>().CardMana = currentClassCard.cardMana;
+    }
+
+    public void CardbackChange(GameObject card, bool isHide)
+    {
+        var cardback = card.GetComponentsInChildren<Image>()[3].color;
+        if (isHide)
+        {
+            cardback.a = 255f;
+            card.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        }
+        else
+        {
+            cardback.a = 0f;
+            card.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+        card.GetComponentsInChildren<Image>()[3].color = cardback;
     }
 }

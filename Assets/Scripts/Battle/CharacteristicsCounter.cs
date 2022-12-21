@@ -31,5 +31,17 @@ public class CharacteristicsCounter : MonoBehaviour
         defense.text = currentDefense.ToString();
     }
 
-    
+    public void NewRoundCharacteristics()
+    {
+        currentDamage = 0;
+        currentDefense = 0;
+        int cardsAmount = transform.childCount;
+        for (int i = 1; i <= cardsAmount; i++)
+        {
+            GameObject card = transform.GetChild(i).gameObject;
+            currentDamage += card.GetComponent<CardInfo>().CardDamage;
+            currentDefense += card.GetComponent<CardInfo>().CardArmor;
+        }
+        ShowCharacteristics();
+    }
 }

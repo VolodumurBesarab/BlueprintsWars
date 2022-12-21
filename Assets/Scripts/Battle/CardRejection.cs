@@ -5,32 +5,18 @@ using UnityEngine.UI;
 
 public class CardRejection : MonoBehaviour
 {
-    [SerializeField] private List<CardInfo> cardRejection = new List<CardInfo>();
     [SerializeField] private GameObject bord;
+    [SerializeField] private CreateCardInfo createCardInfo;
 
-
-    public void Test()
+    public void AddCardToRejection()
     {
-        //Card cards = bord.GetComponentInChildren<Card>();
-        //Transform[]  father = GetComponentsInChildren<Transform>();
-        int childCards = bord.transform.childCount;
-        for (int i = 0; i < childCards; i++)
+        int count = bord.transform.childCount;
+        for (int i = 1; i <= count; i++)
         {
-            cardRejection.Add(bord.GetComponentsInChildren<CardInfo>()[i]);
-            //Debug.Log(bord.GetComponentsInChildren<CardInfo>()[i].CardName);
-            //bord.GetComponentsInChildren<GameObject>()[i]
-            //Destroy(bord.GetComponentsInChildren<GameObject>()[i-1]);
-            //Debug.Log(bord.transform.GetChild(i));
-            //Debug.Log(bord.transform.GetChild(1));
-            Destroy(bord.transform.GetChild(0).gameObject);
+            GameObject card = bord.transform.GetChild(0).gameObject;
+            card.transform.SetParent(transform);
+            card.transform.position = transform.position;
+            createCardInfo.CardbackChange(card, true);
         }
-
-
-
-    }
-
-    public void Test2()
-    {
-        Debug.Log(bord.transform.GetChild(1));
     }
 }

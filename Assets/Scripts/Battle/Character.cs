@@ -10,16 +10,13 @@ public abstract class Character : MonoBehaviour
     [SerializeField] private int currentHitPoints;
     [SerializeField] private int currentArmor;
 
+    [SerializeField] private GameOver gameOver;
+
     private Text textHitPoints;
     private Text textArmor;
-    //private int HitPoints;  // { get; set; }
-    //private int Armor;      // { get; set; }
 
     private void Awake()
     {
-        //HitPoints = hitPoints;
-        //Armor = armor;
-
         textHitPoints = GetComponentsInChildren<Text>()[1];
         textArmor = GetComponentsInChildren<Text>()[2];
 
@@ -32,13 +29,13 @@ public abstract class Character : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHitPoints -= damage;
-        //textHitPoints.text = currentHitPoints.ToString();
+        if (currentHitPoints <= 0)
+            gameOver.EndBattle(name);
     }
 
     public void GiveArmor(int armor)
     {
         currentArmor += armor;
-        //textHitPoints.text = currentArmor.ToString();
     }
 
     public void ShowCharacteristics()
@@ -46,5 +43,4 @@ public abstract class Character : MonoBehaviour
         textHitPoints.text = currentHitPoints.ToString();
         textArmor.text = currentArmor.ToString();
     }
-        
 }

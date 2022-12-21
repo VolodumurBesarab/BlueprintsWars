@@ -10,7 +10,12 @@ public class EndTurn : MonoBehaviour
 
     [SerializeField] private Enemy enemy;
     [SerializeField] private BattleValueCounter battleValueCounter;
-    [SerializeField] private Effects effect;
+    [SerializeField] private CharacteristicsCounter playerCharacteristicsCounter;
+    [SerializeField] private DrawCards drowCards;
+    [SerializeField] private ManaBar manaBar;
+
+    //[SerializeField] private Effects effect;
+    [SerializeField] private CardRejection cardRejection;
 
 
     private void Awake()
@@ -39,6 +44,11 @@ public class EndTurn : MonoBehaviour
     public void PressEndTurnButton()
     {
         battleValueCounter.CountCharacteristic();
+        cardRejection.AddCardToRejection();
+        playerCharacteristicsCounter.NewRoundCharacteristics();
+        drowCards.DrowCard();
+        manaBar.RefreshMana();
+        CanMove();
         //effect.ApplyEffect(Effects.effectType.burn, enemy);
     }
 }

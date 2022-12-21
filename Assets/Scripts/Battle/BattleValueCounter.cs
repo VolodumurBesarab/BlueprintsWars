@@ -29,7 +29,6 @@ public class BattleValueCounter : MonoBehaviour
         totalEnemyArmor = enemyCharacteristicsCounter.currentDefense - playerCharacteristicsCounter.currentDamage;
         if (totalEnemyArmor < 0)
             totalEnemyArmor = 0;
-        Debug.Log(totalEnemyArmor + " enArmor");
 
         player.TakeDamage(totalEnemyDamage);
         player.GiveArmor(totalPlayerArmor);
